@@ -362,6 +362,13 @@ RSpec.describe SwitchPoint::Model do
             Book3.create
           end
         }.to raise_error(SwitchPoint::Error)
+
+        expect {
+          Book4.transaction_with(Book5) do
+            Book4.create
+            Book5.create
+          end
+        }.to raise_error(SwitchPoint::Error)
       }
     end
 

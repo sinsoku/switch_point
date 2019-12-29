@@ -43,6 +43,22 @@ class Book3 < ActiveRecord::Base
   use_switch_point :main2
 end
 
+class AbstractMain < ActiveRecord::Base
+  use_switch_point :main
+  self.abstract_class = true
+end
+
+class Book4 < AbstractMain
+end
+
+class AbstractMain2 < ActiveRecord::Base
+  use_switch_point :main2
+  self.abstract_class = true
+end
+
+class Book5 < AbstractMain2
+end
+
 class Publisher < ActiveRecord::Base
   use_switch_point :main
 end

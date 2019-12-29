@@ -48,12 +48,16 @@ module SwitchPoint
       end
 
       def switch_point_proxy
+        ProxyRepository.checkout(switch_point_name) if switch_point_name
+      end
+
+      def switch_point_name
         if defined?(@switch_point_name)
-          ProxyRepository.checkout(@switch_point_name)
+          @switch_point_name
         elsif self == ActiveRecord::Base
           nil
         else
-          superclass.switch_point_proxy
+          superclass.switch_point_name
         end
       end
 
@@ -75,9 +79,9 @@ module SwitchPoint
 
       def can_transaction_with?(*models)
         writable_switch_points = [self, *models].map do |model|
-          if model.instance_variable_defined?(:@switch_point_name)
+          if model.switch_point_name
             SwitchPoint.config.model_name(
-              model.instance_variable_get(:@switch_point_name),
+              model.switch_point_name,
               :writable
             )
           end
