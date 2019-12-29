@@ -12,6 +12,7 @@ SimpleCov.formatters = [
 SimpleCov.start do
   add_filter Bundler.bundle_path.to_s
   add_filter File.dirname(__FILE__)
+  add_filter '/spec/'
 end
 
 require 'switch_point'
