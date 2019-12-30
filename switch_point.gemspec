@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.2.0'
 
+  spec.add_development_dependency 'actionpack', '>= 3.2.0'
   spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'benchmark-ips'
   spec.add_development_dependency 'bundler'

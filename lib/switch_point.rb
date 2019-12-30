@@ -5,6 +5,10 @@ require 'switch_point/config'
 require 'switch_point/version'
 
 module SwitchPoint
+  module Middleware
+    autoload :DatabaseSelector, 'switch_point/middleware/database_selector'
+  end
+
   module ClassMethods
     def configure(&block)
       block.call(config)
